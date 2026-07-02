@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The WINNERS Circle | WINNERS Tampa</title>
+<style>
+  :root {
+    --navy: #0B1B36;
+    --navy-deep: #071229;
+    --red: #C41230;
+    --cream: #F7F5F1;
+    --ink: #1A1A1A;
+    --muted: #5B6472;
+    --line: #E3E0D8;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Georgia', 'Iowan Old Style', serif;
+    background: var(--cream);
+    color: var(--ink);
+  }
+
+  .accent-bar {
+    height: 6px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--navy) 0%, var(--navy) 70%, var(--red) 70%, var(--red) 100%);
+  }
+
+  header {
+    background: var(--navy-deep);
+    color: #fff;
+    text-align: center;
+    padding: 56px 24px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::after {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 260px;
+    height: 260px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50%;
+  }
+
+  .eyebrow {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    letter-spacing: 3px;
+    font-size: 13px;
+    color: #C7CCD8;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-size: 48px;
+    margin: 0 0 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .subtitle {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #D7DAE2;
+  }
+
+  .story {
+    background: var(--navy);
+    color: #E9EAEE;
+    padding: 56px 24px;
+  }
+
+  .story-inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .story-eyebrow {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: var(--red);
+    letter-spacing: 2px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .story h2 {
+    color: #fff;
+    font-size: 30px;
+    margin: 0 0 20px;
+  }
+
+  .story p {
+    line-height: 1.7;
+    font-size: 16px;
+    margin: 0 0 18px;
+    color: #C9CDD6;
+  }
+
+  main {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  @media (max-width: 760px) {
+    main { grid-template-columns: 1fr; }
+    h1 { font-size: 34px; }
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--line);
+    padding: 32px;
+  }
+
+  .card h3 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 15px;
+    margin: 0 0 12px;
+  }
+
+  .form-card h3 {
+    padding-bottom: 14px;
+    border-bottom: 3px solid var(--red);
+    display: inline-block;
+  }
+
+  label {
+    display: block;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    margin-top: 18px;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid var(--line);
+    background: #FAFAF8;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+  }
+
+  input:focus, select:focus, .choice-btn:focus-visible, .submit-btn:focus-visible {
+    outline: 2px solid var(--navy);
+    outline-offset: 1px;
+  }
+
+  .choice-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+
+  .choice-btn {
+    padding: 11px 8px;
+    border: 1px solid var(--line);
+    background: #FAFAF8;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--ink);
+  }
+
+  .choice-btn.selected {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: #fff;
+  }
+
+  .submit-btn {
+    width: 100%;
+    margin-top: 26px;
+    padding: 15px;
+    background: var(--red);
+    color: #fff;
+    border: none;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  .submit-btn:hover { background: #A60F28; }
+  .submit-btn:disabled { background: #C9A2AA; cursor: not-allowed; }
+
+  .fine-print {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+
+  .about-card ul {
+    margin: 0;
+    padding-left: 18px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.9;
+  }
+
+  .status-panel {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .status-panel.show { display: block; }
+  .form-card.hide { display: none; }
+
+  .status-panel h3 {
+    font-family: 'Georgia', serif;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 22px;
+    border: none;
+    padding: 0;
+  }
+
+  .status-panel p {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .error-text {
+    color: var(--red);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    margin-top: 14px;
+    display: none;
+  }
+
+  footer {
+    text-align: center;
+    padding: 28px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    color: #B7BCC5;
+    background: var(--navy-deep);
+  }
+</style>
+</head>
+<body>
+
+<div class="accent-bar"></div>
+
+<header>
+  <div class="eyebrow">WINNERS TAMPA PRESENTS</div>
+  <h1>The WINNERS Circle</h1>
+  <div class="subtitle">Lacrosse, Leadership &amp; Community</div>
+</header>
+
+<section class="story">
+  <div class="story-inner">
+    <div class="story-eyebrow">Our Origin Story</div>
+    <h2>How WINNERS Tampa Came to Be</h2>
+    <p>WINNERS Tampa was founded in memory of Jordan Jolly, a local kid who fell in love with lacrosse at nine years old and let the sport shape him into a confident, disciplined young leader before his unexpected passing in 2019.</p>
+    <p>To honor him, his parents, Carol and Lew Jolly, partnered with WINNERS DC to bring the program home to Tampa. Carol, who spent her career as a Deputy Sheriff serving the community, saw firsthand what kids in under-resourced neighborhoods were up against — and she and Lew wanted Jordan's love of the game to open a door for other families who might never otherwise get the chance.</p>
+    <p>Nearly a third of children in the Tampa Bay area grow up in poverty, often with little access to safe after-school activities or positive mentors. WINNERS Tampa exists to close that gap: free lacrosse programming paired with mentorship, character development, and a supportive community that helps local youth build confidence, discipline, and life skills that carry far beyond the field.</p>
+  </div>
+</section>
+
+<main>
+  <div class="card form-card" id="formCard">
+    <h3>Register to Attend</h3>
+    <form id="regForm">
+      <div class="row">
+        <div>
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="First Name" required>
+        </div>
+        <div>
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="Last Name" required>
+        </div>
+      </div>
+
+      <label for="invitedBy">Board Member Who Invited You</label>
+      <input type="text" id="invitedBy" name="Board Member Who Invited You" placeholder="e.g. Alex Reyes">
+
+      <div class="row">
+        <div>
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="Email Address" required>
+        </div>
+        <div>
+          <label for="phone">Cell Phone Number</label>
+          <input type="tel" id="phone" name="Cell Phone Number" placeholder="(813) 555-0123" required>
+        </div>
+      </div>
+
+      <label>Interested in joining the WINNERS Tampa Board?</label>
+      <input type="hidden" id="boardInterest" name="Interested in Joining the Board">
+      <div class="choice-group" id="boardChoiceGroup">
+        <button type="button" class="choice-btn" data-value="Yes">Yes</button>
+        <button type="button" class="choice-btn" data-value="No">No</button>
+        <button type="button" class="choice-btn" data-value="Maybe">Maybe</button>
+      </div>
+
+      <label for="volunteer">Volunteer Opportunities</label>
+      <select id="volunteer" name="Volunteer Opportunities" required>
+        <option value="">Select an option…</option>
+        <option value="Game Day Support">Game Day Support</option>
+        <option value="Coaching / Skills Clinics">Coaching / Skills Clinics</option>
+        <option value="Fundraising & Events">Fundraising &amp; Events</option>
+        <option value="Mentorship">Mentorship</option>
+        <option value="Administrative / Behind the Scenes">Administrative / Behind the Scenes</option>
+        <option value="Not at This Time">Not at this time</option>
+      </select>
+
+      <button type="submit" class="submit-btn" id="submitBtn">Register Now</button>
+      <div class="error-text" id="errorText">Something went wrong sending your registration. Please try again.</div>
+      <p class="fine-print">Your info is shared with the WINNERS Tampa board to follow up on your registration.</p>
+    </form>
+  </div>
+
+  <div class="card status-panel" id="statusPanel">
+    <h3>You're registered 🎉</h3>
+    <p>Thanks for signing up for The WINNERS Circle. A member of the WINNERS Tampa board will follow up with you soon.</p>
+  </div>
+
+  <div class="card about-card">
+    <h3>About This Circle</h3>
+    <ul>
+      <li>Connect with WINNERS Tampa leadership</li>
+      <li>Learn about lacrosse &amp; leadership programming</li>
+      <li>Explore board and volunteer roles</li>
+    </ul>
+  </div>
+</main>
+
+<footer>Board Access</footer>
+
+<script>
+  // Board interest choice buttons
+  const choiceGroup = document.getElementById('boardChoiceGroup');
+  const boardInterestField = document.getElementById('boardInterest');
+  choiceGroup.addEventListener('click', (e) => {
+    const btn = e.target.closest('.choice-btn');
+    if (!btn) return;
+    choiceGroup.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    boardInterestField.value = btn.dataset.value;
+  });
+
+  // Form submission via Formspree
+  const form = document.getElementById('regForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const errorText = document.getElementById('errorText');
+  const formCard = document.getElementById('formCard');
+  const statusPanel = document.getElementById('statusPanel');
+
+  // Replace YOUR_FORM_ID below once the Formspree form is created.
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorText.style.display = 'none';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        formCard.classList.add('hide');
+        statusPanel.classList.add('show');
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (err) {
+      errorText.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Register Now';
+    }
+  });
+</script>
+
+</body>
+</html>
